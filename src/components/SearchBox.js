@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import {Form, Button} from "react-bootstrap";
+import {withRouter, Link} from 'react-router-dom';
 
-export default class SearchBox extends Component {
+
+class SearchBox extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -27,8 +29,12 @@ export default class SearchBox extends Component {
       
     }).then(res=>res.json())
       .then(data=>this.props.data(data))
+      // .then(this.props.history.push("/stats"))
+
+
   }
   render() {
+    console.log(this.props.history)
     return (
       <Form.Group>
         <Form.Label></Form.Label>
@@ -44,10 +50,11 @@ export default class SearchBox extends Component {
           <option>BR1</option>
           <option>KR</option>
         </Form.Control>
-        <Button onClick={this.submitForm}>Search</Button>
+        <Link to="/stats" onClick={this.submitForm}>Search</Link>
       </Form.Group>
     );
   }
 }
 
 
+export default SearchBox;
