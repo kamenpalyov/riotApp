@@ -25,4 +25,6 @@ yarn-error.log*
 # /public/assets/emblems/Emblem_Bronze.png
 
 /public/assets/
+/api/node_modules
+/api/.env
 
