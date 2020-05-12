@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Form, Button} from "react-bootstrap";
 import {withRouter, Link} from 'react-router-dom';
-
+import './SearchBox.css'
 
 class SearchBox extends Component {
   constructor(props){
@@ -29,12 +29,12 @@ class SearchBox extends Component {
       
     }).then(res=>res.json())
       .then(data=>this.props.data(data))
-      // .then(this.props.history.push("/stats"))
+      
 
 
   }
   render() {
-    console.log(this.props.history)
+    
     return (
       <Form.Group>
         <Form.Label></Form.Label>
@@ -43,14 +43,16 @@ class SearchBox extends Component {
           placeholder="summoner name"
           name="sumId"
           onChange={this.searchField}
+          className="search"
         />
         <Form.Label ></Form.Label>
-        <Form.Control onChange={this.regionField} as="select" className="form-control" name="region" id="">
+        <Link className="button" to="/stats" onClick={this.submitForm}><i className="fas fa-search"></i></Link>
+        <Form.Control onChange={this.regionField} as="select" className="drop-menu" name="region" id="">
           <option>EUW1</option>
           <option>BR1</option>
           <option>KR</option>
         </Form.Control>
-        <Link to="/stats" onClick={this.submitForm}>Search</Link>
+        
       </Form.Group>
     );
   }

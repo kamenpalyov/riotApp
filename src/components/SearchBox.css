@@ -1,0 +1,42 @@
+.search{
+    background:rgb(75, 114, 109);
+    border:none;
+    height: 30px;
+    width:230px;
+    outline:none;
+    padding-left:20px;
+    
+}
+select>option{
+    background:#75B1A9;
+    border:none;
+    outline:none;
+}
+textarea:focus, input:focus {
+    color:#75B1A9;
+    
+}
+::placeholder{
+    color:#75B1A9;
+    padding:10px;
+}
+
+
+.button{
+    background:rgb(75, 114, 109);
+    padding:5.5px;
+    position: relative;
+    top:2px;
+    color:#75B1A9;
+
+}
+
+.drop-menu{
+    background:none;
+    margin-left:20px;
+    color:rgb(75, 114, 109);
+    font-size:1rem;
+    line-height: 10px;
+    border:none;
+    outline:none
+}

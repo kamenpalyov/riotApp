@@ -14,8 +14,11 @@ const CardList = ({ data }) => {
                             rank={user.rank} 
                             name={user.summonerName}
                             image={data.profileIconId}
-
-                            
+                            lvl={data.summonerLevel}
+                            wins={user.wins}
+                            losses={user.losses}
+                            points={user.leaguePoints}
+                            matches={data.matchStats}
                         />
                     );
                 })

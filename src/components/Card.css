@@ -1,0 +1,60 @@
+*{
+    margin:0;
+    padding:0
+}
+
+.background{
+    
+    margin:0 auto;
+    background:red;
+    max-width:1200px;
+    height:300px;
+    
+    
+}
+header{
+    
+    max-width:1200px;
+    height: 600px;
+    background:gray
+}
+header .icon{
+    margin-left:50px;
+    
+}
+header h2{
+    margin-left:50px;
+    color:white;
+    
+}
+
+.center{
+    margin:0 auto;
+}
+
+.card{
+    padding-left: 50px;
+    padding-top: 30px;
+    margin:0 auto;
+    background:cyan;
+    max-width:1200px;
+    height:300px;
+}
+.image-name{
+    padding: 80px 0 0 0px
+}
+
+header .emblem{
+    width:100px;
+}
+
+.image-name p{
+    padding-left:50px;
+    color:white;
+    font-weight: bold;
+}
+.card p {
+    color:black;
+    font-weight: 500;
+
+}

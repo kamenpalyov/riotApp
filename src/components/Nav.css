@@ -1,0 +1,17 @@
+.link{
+    text-decoration: none;
+    color:white;
+    padding-left:20px;
+    font-size: 1.5rem;
+}
+.link:hover{
+    
+    color:rgb(206, 253, 226);
+    transition:0.5s ease-out;
+}
+
+
+.active{
+    
+    color:rgb(75, 114, 109);
+}

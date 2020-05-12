@@ -1,0 +1,9 @@
+.header{
+    max-width: 1200px;
+    display:flex;
+    justify-content: space-around;
+    height:50px;
+    background:#75B1A9;
+    align-items:center;
+    margin:0 auto;
+}
