@@ -14,9 +14,10 @@ class App extends Component {
       data: {
         stats: [],
         profileIconId: 0,
-        champions:[],
-        matchStats:{}
+        matchStats:{},
+        games:{}
       },
+      champions:{}
     };
   }
   riotData = (data) => {
@@ -26,10 +27,10 @@ class App extends Component {
   componentDidMount(){
     fetch("http://ddragon.leagueoflegends.com/cdn/10.9.1/data/en_US/champion.json")
       .then(res=>res.json())
-      .then(data=>this.setState({ champions:data}))
-  }
+      .then(data=>this.setState({champions:data})
+    )}
+
   render() {
-    
     return (
       <div>
         <header className={styles.header}>
@@ -43,7 +44,7 @@ class App extends Component {
 
           <Switch>
               <Route path="/stats">
-              <CardList data={this.state.data}/>
+              <CardList data={this.state.data} champions={this.state.champions}/>
               {/* <div style={{backgroundColor: "black"}}>Hello</div> */}
               </Route>
               <Route path="/div">

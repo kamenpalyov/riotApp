@@ -58,3 +58,7 @@ header .emblem{
     font-weight: 500;
 
 }
+.player-img{
+    width:50px;
+    padding-right:2px;
+}
