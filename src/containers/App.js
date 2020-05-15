@@ -15,7 +15,8 @@ class App extends Component {
         stats: [],
         profileIconId: 0,
         matchStats:{},
-        games:{}
+        games:{},
+        region:""
       },
       champions:{}
     };
@@ -44,7 +45,7 @@ class App extends Component {
 
           <Switch>
               <Route path="/stats">
-              <CardList data={this.state.data} champions={this.state.champions}/>
+              <CardList dataHandler={this.riotData} data={this.state.data} champions={this.state.champions}/>
               {/* <div style={{backgroundColor: "black"}}>Hello</div> */}
               </Route>
               <Route path="/div">

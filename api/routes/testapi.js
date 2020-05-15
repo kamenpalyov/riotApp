@@ -30,12 +30,10 @@ router.post("/", async function (req, res, next) {
     return id.gameId;
   });
 
-  console.log(gameId);
-
+  console.log(sumId, region)
   const gameData = [];
 
   for (let id of gameId) {
-    console.log(id)
     const response = await axios.get(`https://${region}${baseUrl}match/v4/matches/${id}?api_key=${api_key}`);
     const data = await response.data;
     gameData.push(data)
@@ -45,8 +43,10 @@ router.post("/", async function (req, res, next) {
     summonerLevel: summonerLevel,
     profileIconId: profileIconId,
     stats: summonerStats,
-    games: gameData
+    games: gameData,
+    region: region
   });
 });
+
 
 module.exports = router;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from "./Card"
 
-const CardList = ({ data,champions }) => {
+const CardList = ({ data,champions,dataHandler }) => {
     
     return (
         <div>
@@ -22,6 +22,8 @@ const CardList = ({ data,champions }) => {
                             matches={data.matchStats}
                             games={data.games}
                             champions={champions.data}
+                            region={data.region}
+                            dataHandler={dataHandler}
                         />
                     );
                 })

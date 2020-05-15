@@ -61,4 +61,20 @@ header .emblem{
 .player-img{
     width:50px;
     padding-right:2px;
+    
+}
+.player-name{
+    position: relative;
+    bottom:20px;
+    color:black;
+    display:inline-block;
+    width: 8ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    
+}
+a{
+    text-decoration: none;
+    
 }
