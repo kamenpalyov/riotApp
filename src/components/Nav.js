@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {NavLink} from 'react-router-dom'
-import SearchBox from './SearchBox'
 import './Nav.css'
 
 export default class Nav extends Component {

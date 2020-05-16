@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import CardList from "../components/CardList";
-import Card from "../components/Card";
 import Nav from "../components/Nav";
 import SearchBox from "../components/SearchBox";
-import { Route, Switch, NavLink } from "react-router-dom";
+import { Route, Switch} from "react-router-dom";
 import styles from "./App.module.css"
 
 class App extends Component {
@@ -13,9 +11,9 @@ class App extends Component {
     this.state = {
       data: {
         soloStats: [],
+        flexStats: [],
         profileIconId: 0,
-        matchStats:{},
-        games:{},
+        matches:{},
         region:""
       },
       champions:{}
@@ -30,7 +28,7 @@ class App extends Component {
       .then(res=>res.json())
       .then(data=>this.setState({champions:data})
     )}
-
+  
   render() {
     return (
       <div>

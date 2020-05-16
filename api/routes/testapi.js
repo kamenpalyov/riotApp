@@ -20,14 +20,16 @@ router.post("/", async function (req, res, next) {
     `https://${region}${baseUrl}league/v4/entries/by-summoner/${id}?api_key=${api_key}`
   );
   const summonerStats = await stats.data;
+
   const soloStats = summonerStats.filter((solo) => {
     return solo.queueType === "RANKED_SOLO_5x5";
   });
+
   const flexStats = summonerStats.filter((solo) => {
     return solo.queueType === "RANKED_FLEX_SR"
      
   });
-
+  console.log(flexStats)
   const matchHistory = await axios.get(
     `https://${region}${baseUrl}match/v4/matchlists/by-account/${accountId}?api_key=${api_key}`
   );
@@ -52,7 +54,8 @@ router.post("/", async function (req, res, next) {
     summonerLevel: summonerLevel,
     profileIconId: profileIconId,
     soloStats: soloStats,
-    games: gameData,
+    flexStats: flexStats,
+    matches: gameData,
     region: region,
   });
 });

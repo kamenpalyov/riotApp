@@ -4,11 +4,11 @@
 }
 
 .background{
-    
     margin:0 auto;
-    background:red;
     max-width:1200px;
-    height:300px;
+    
+    
+
     
     
 }
@@ -33,15 +33,19 @@ header h2{
 }
 
 .card{
-    padding-left: 50px;
-    padding-top: 30px;
+    display:flex;
+    justify-content: space-between;
+    padding-left:100px;
+    padding-right:100px;
+    padding-top: 120px;
+    padding-bottom: 120px;
     margin:0 auto;
     background:cyan;
     max-width:1200px;
-    height:300px;
+    
 }
 .image-name{
-    padding: 80px 0 0 0px
+    padding: 120px 0 120px 0px
 }
 
 header .emblem{

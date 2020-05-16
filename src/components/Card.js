@@ -1,26 +1,37 @@
 import React from 'react';
 import "./Card.css"
-import {ListGroup,ListGroupItem,Col,Row} from "react-bootstrap"
 import {Link} from "react-router-dom"
 
-const Card =({rank,name,image,tier,lvl,wins,losses,points,matches,games,champions,region,dataHandler})=>{
-    const mapGames= games.map(game=>{
+const Card =({rank,rankFlex,name,image,tier,tierFlex,lvl,wins,winsFlex,losses,lossesFlex,points,pointsFlex,matches,champions,region,dataHandler})=>{
+    const champIds= matches.map(game=>{
         return game.participants.map(ids=>{
             return ids.championId
         })
     })
-    const playerName= games.map(part=>{
+    const summonerName= matches.map(part=>{
         return part.participantIdentities.map(name=>{
             return name.player.summonerName
         })
     })
-    const playerId= games.map(part=>{
-        return part.participantIdentities.map(name=>{
-            return name.player.accountId
+    
+    const partId=[] 
+    matches.forEach(game=>{
+        game.participantIdentities.forEach(part=>{
+            if(part.player.summonerName === name){
+                return partId.push(part.participantId)
+            }
         })
     })
-
-    const players = mapGames.map(game=>{
+    
+    
+    
+    // const playerId= matches.map(part=>{
+    //     return part.participantIdentities.map(name=>{
+    //         return name.player.accountId
+    //     })
+    // })
+    
+    const playersChampName = champIds.map(game=>{
         const champImage=[]
         for (let id of game){
             let names=Object.keys(champions)
@@ -33,15 +44,26 @@ const Card =({rank,name,image,tier,lvl,wins,losses,points,matches,games,champion
         }
         return champImage
     })
-    
-    const playerImage = (arr,names,indexes,arrNum) =>{
-        const newName=names[arrNum].slice(indexes[0],indexes[1])
-        return arr[arrNum].slice(indexes[0],indexes[1]).map((img,i)=>{
-            return  <Link to="/stats" onClick={() => subForm(newName,i)} key={i}><span className="player-name" title={newName[i]}>{newName[i]}</span><img className="player-img" key={i} src={`../assets/champion/${img}.png`} title={`${img}`} /></Link>
-        })
+    const playerImage = (arr,names,arrNum) =>{
+        const newName=names[arrNum].slice(0,5)
+        const newName2=names[arrNum].slice(5,10)
+        return  (<div style={{display:"flex" ,flexDirection:"row"}}>
+                    <div style={{display:"flex", flexDirection:"column"}}>
+                        {arr[arrNum].slice(0,5).map((img,i)=>{
+                            return  <Link to="/stats" onClick={() => subForm(newName,i)} key={i}><span className="player-name" title={newName[i]}>{newName[i]}</span><img className="player-img" alt="pic" key={i} src={`../assets/champion/${img}.png`} title={`${img}`} /></Link>
+                        })}
+                    </div>
+                    <div style={{alignSelf:"center" , margin:"0 20px"}}>VS</div>
+                    <div style={{display:"flex", flexDirection:"column"}}>
+                        {arr[arrNum].slice(5,10).map((img,i)=>{
+                            return  <Link to="/stats" onClick={() => subForm(newName2,i)} key={i}><span className="player-name" title={newName2[i]}>{newName2[i]}</span><img className="player-img" alt="pic" key={i} src={`../assets/champion/${img}.png`} title={`${img}`} /></Link>
+                        })}
+                    </div>
+                </div>
+                
+                )
+            
     }
-    console.log(playerName)
-    
     
     const subForm=(arrIds,index)=>{
         
@@ -57,44 +79,136 @@ const Card =({rank,name,image,tier,lvl,wins,losses,points,matches,games,champion
           .then(data=>dataHandler(data))
      }
 
-    return(
-        
-        <div>
+    return rankFlex&&rank?
+        (
             
             <div>
-                <header className="center">
-                    <div className="background">
-                        <div className="image-name">
-                            <img className="icon" src={`../assets/profileicon/${image}.png`} style={{borderRadius:"50%", border: "4px solid #DC9202 ", width: "100px"}}/>
-                            <h2>{name}</h2>
-                            <p>level:{lvl}</p>
-                        </div>
-                    </div>
-                    <div className="card">
-                        
-                        <img className="emblem" src={`../assets/emblems/Emblem_${tier}.png`}  />
-                        <h3>Rank: {tier}-{rank}</h3>
-                        <p>Wins/Losses: {wins}/{losses}</p>
-                        <p>League Points: {points}</p>
-
-                    </div>
-                    <div className="mh-container">
-                        <div style={{display:"flex"}}>
-                            <div style={{display:"flex", flexDirection:"column"}}>{playerImage(players,playerName,[0,5],0)}</div>
-                            <div style={{alignSelf:"center" , margin:"0 20px"}}>VS</div>
-                            <div style={{display:"flex", flexDirection:"column"}}>{playerImage(players,playerName,[5,10],0)}</div>
-                        </div>
-                        
-
-                        {/* {playerImage(players[1],[0,5])}
-                        {playerImage(players[2],[0,5])} */}
-                    </div>
-                    
-                </header>
                 
+                <div>
+                    <header className="center">
+                        <div className="background" style={{background:`url("../assets/splash/${playersChampName[0][partId[0]-1]}_0.jpg")`}}>
+                            <div className="image-name">
+                                <img className="icon" alt="pic" src={`../assets/profileicon/${image}.png`} style={{borderRadius:"50%", border: "4px solid #DC9202 ", width: "100px"}}/>
+                                <h2>{name}</h2>
+                                <p>level:{lvl}</p>
+                            </div>
+                        </div>
+                        <div className="card">
+                            
+                            <div>
+                                <h3>Ranked Solo 5v5</h3>
+                                <img className="emblem" alt="pic" src={`../assets/emblems/Emblem_${tier}.png`}  />
+                                <h3>Rank: {tier}-{rank}</h3>
+                                <p>Wins/Losses: {wins}/{losses}</p>
+                                <p>League Points: {points}</p>
+                            </div>
+                            <div>
+                                <h3>Ranked Solo 5v5</h3>
+                                <img className="emblem" src={`../assets/emblems/Emblem_${tierFlex}.png`}  />
+                                <h3>Rank: {tierFlex}-{rankFlex}</h3>
+                                <p>Wins/Losses: {winsFlex}/{lossesFlex}</p>
+                                <p>League Points: {pointsFlex}</p>
+                            </div>
+
+                        </div>
+                        <div className="mh-container">
+                            <div style={{display:"flex"}}>
+                                {playerImage(playersChampName,summonerName,0)}
+                            </div>
+                        </div>
+                        
+                    </header>
+                    
+                </div>
             </div>
-        </div>
-    )    
+        ):
+        (rank?
+            (
+            
+                <div>
+                    
+                    <div>
+                        <header className="center">
+                            <div className="background" style={{background:`url("../assets/splash/${playersChampName[0][partId[0]-1]}_0.jpg")`}}>
+                                <div className="image-name">
+                                    <img className="icon" alt="pic" src={`../assets/profileicon/${image}.png`} style={{borderRadius:"50%", border: "4px solid #DC9202 ", width: "100px"}}/>
+                                    <h2>{name}</h2>
+                                    <p>level:{lvl}</p>
+                                </div>
+                            </div>
+                            <div className="card">
+                                
+                                <div>
+                                    <h3>Ranked Solo 5v5</h3>
+                                    <img className="emblem" alt="pic" src={`../assets/emblems/Emblem_${tier}.png`}  />
+                                    <h3>Rank: {tier}-{rank}</h3>
+                                    <p>Wins/Losses: {wins}/{losses}</p>
+                                    <p>League Points: {points}</p>
+                                </div>
+                                {/* <div>
+                                    <h3>Ranked Solo 5v5</h3>
+                                    <img className="emblem" src={`../assets/emblems/Emblem_${tierFlex}.png`}  />
+                                    <h3>Rank: {tierFlex}-{rankFlex}</h3>
+                                    <p>Wins/Losses: {winsFlex}/{lossesFlex}</p>
+                                    <p>League Points: {pointsFlex}</p>
+                                </div> */}
+
+                            </div>
+                            <div className="mh-container">
+                                <div style={{display:"flex"}}>
+                                    {playerImage(playersChampName,summonerName,0)}
+                                </div>
+                            </div>
+                            
+                        </header>
+                        
+                    </div>
+                </div>
+            ):
+            (
+                
+                <div>
+                    
+                    <div>
+                        <header className="center">
+                            <div className="background" style={{background:`url("../assets/splash/${playersChampName[0][partId[0]-1]}_0.jpg")`}}>
+                                <div className="image-name">
+                                    <img className="icon" alt="pic" src={`../assets/profileicon/${image}.png`} style={{borderRadius:"50%", border: "4px solid #DC9202 ", width: "100px"}}/>
+                                    <h2>{name}</h2>
+                                    <p>level:{lvl}</p>
+                                </div>
+                            </div>
+                            <div className="card">
+                                
+                                {/* <div>
+                                    <h3>Ranked Solo 5v5</h3>
+                                    <img className="emblem" alt="pic" src={`../assets/emblems/Emblem_${tier}.png`}  />
+                                    <h3>Rank: {tier}-{rank}</h3>
+                                    <p>Wins/Losses: {wins}/{losses}</p>
+                                    <p>League Points: {points}</p>
+                                </div> */}
+                                <div>
+                                    <h3>Ranked Solo 5v5</h3>
+                                    <img className="emblem" src={`../assets/emblems/Emblem_${tierFlex}.png`}  />
+                                    <h3>Rank: {tierFlex}-{rankFlex}</h3>
+                                    <p>Wins/Losses: {winsFlex}/{lossesFlex}</p>
+                                    <p>League Points: {pointsFlex}</p>
+                                </div>
+
+                            </div>
+                            <div className="mh-container">
+                                <div style={{display:"flex"}}>
+                                    {playerImage(playersChampName,summonerName,0)}
+                                </div>
+                            </div>
+                            
+                        </header>
+                        
+                    </div>
+                </div>
+            )
+        )
+
 }
 
 export default Card ;

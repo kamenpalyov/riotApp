@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import {Form, Button} from "react-bootstrap";
-import {withRouter, Link} from 'react-router-dom';
+import {Form,} from "react-bootstrap";
+import { Link} from 'react-router-dom';
 import './SearchBox.css'
 
 class SearchBox extends Component {
@@ -29,11 +29,19 @@ class SearchBox extends Component {
       
     }).then(res=>res.json())
       .then(data=>this.props.data(data))
-      
-
-
   }
+  componentDidMount(){
+    let input= document.querySelector("#input-search")
+    input.addEventListener("keyup",event=>{
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.querySelector(".button").click();
+       }
+    })
+  }
+  
   render() {
+    
     
     return (
       <Form.Group>
@@ -44,6 +52,7 @@ class SearchBox extends Component {
           name="sumId"
           onChange={this.searchField}
           className="search"
+          id="input-search"
         />
         <Form.Label ></Form.Label>
         <Link className="button" to="/stats" onClick={this.submitForm}><i className="fas fa-search"></i></Link>
@@ -55,6 +64,7 @@ class SearchBox extends Component {
         
       </Form.Group>
     );
+    
   }
 }
 
