@@ -6,7 +6,7 @@ const CardList = ({ data,champions,dataHandler }) => {
     return (
         <div>
             {
-               data.stats.map((user, i ) =>{     
+               data.soloStats.map((user, i ) =>{     
                     
                     return (
                         <Card 

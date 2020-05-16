@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       data: {
-        stats: [],
+        soloStats: [],
         profileIconId: 0,
         matchStats:{},
         games:{},
