@@ -3,6 +3,7 @@ import "./Card.css"
 import {Link} from "react-router-dom"
 
 const Card =({rank,rankFlex,name,image,tier,tierFlex,lvl,wins,winsFlex,losses,lossesFlex,points,pointsFlex,matches,champions,region,dataHandler})=>{
+    
     const champIds= matches.map(game=>{
         return game.participants.map(ids=>{
             return ids.championId
@@ -23,7 +24,15 @@ const Card =({rank,rankFlex,name,image,tier,tierFlex,lvl,wins,winsFlex,losses,lo
         })
     })
     
-    
+    const gameStats=[]
+    matches.forEach(game=>{
+        gameStats.push(game.participants.filter(part=>{
+            return part.participantId === partId[0]
+        }))
+    })
+    const allPart= matches.map(part=>{
+        return part.participants
+    })
     
     // const playerId= matches.map(part=>{
     //     return part.participantIdentities.map(name=>{
@@ -44,13 +53,41 @@ const Card =({rank,rankFlex,name,image,tier,tierFlex,lvl,wins,winsFlex,losses,lo
         }
         return champImage
     })
+    // const scrollTop= () => {
+    //     window.scrollTo({
+    //         top: 50,
+    //         behavior: 'smooth'
+    //       });
+    // }
+
     const playerImage = (arr,names,arrNum) =>{
+        const partStats= gameStats[arrNum][0]
+        const partKIlls= allPart[arrNum].map(part=>{
+            return part.stats.kills
+        })
+        const killSum= partKIlls.reduce((a,b)=>a + b, 0)
+        const killPerc=parseInt((partStats.stats.kills / killSum) * 100)
         const newName=names[arrNum].slice(0,5)
         const newName2=names[arrNum].slice(5,10)
-        return  (<div style={{display:"flex" ,flexDirection:"row"}}>
+        return  (<div style={{display:"flex" ,flexDirection:"row",background:"gray",width:"550px"}}>
+                    <div style={{alignSelf:"center"}}>
+                        {partStats.stats.win ? <h4 style={{color:"green",fontWeight:"bold"}}>Victory</h4> : <h4 style={{color:"red",fontWeight:"bold"}}>Defeat</h4> }
+                        <img className="player-img"  src={`../assets/champion/${playersChampName[0][partId[0]-1]}.png`}></img>
+                        <p><span style={{color:"green"}}>{partStats.stats.kills}</span> / <span style={{color:"red"}}>{partStats.stats.deaths}</span> / <span style={{color:"cyan"}}>{partStats.stats.assists}</span></p>
+                        <p title="Kills Participation">KP : {killPerc}%</p>
+                    </div>
+                    <div style={{display:"flex", flexWrap:"wrap",maxWidth:"160px",alignSelf:"center",justifyContent:"center"}}>
+                        <img className="player-img"  src={`../assets/item/${partStats.stats.item0}.png`}></img>
+                        <img className="player-img"  src={`../assets/item/${partStats.stats.item1}.png`}></img>
+                        <img className="player-img"  src={`../assets/item/${partStats.stats.item2}.png`}></img>
+                        <img className="player-img"  src={`../assets/item/${partStats.stats.item3}.png`}></img>
+                        <img className="player-img"  src={`../assets/item/${partStats.stats.item4}.png`}></img>
+                        <img className="player-img"  src={`../assets/item/${partStats.stats.item5}.png`}></img>
+                        <img className="player-img"  src={`../assets/item/${partStats.stats.item6}.png`}></img>
+                    </div>
                     <div style={{display:"flex", flexDirection:"column"}}>
                         {arr[arrNum].slice(0,5).map((img,i)=>{
-                            return  <Link to="/stats" onClick={() => subForm(newName,i)} key={i}><span className="player-name" title={newName[i]}>{newName[i]}</span><img className="player-img" alt="pic" key={i} src={`../assets/champion/${img}.png`} title={`${img}`} /></Link>
+                            return  <Link to="/stats" className="scroll-top" onClick={() => subForm(newName,i)} key={i}><span className="player-name" title={newName[i]}>{newName[i]}</span><img className="player-img" alt="pic" key={i} src={`../assets/champion/${img}.png`} title={`${img}`} /></Link>
                         })}
                     </div>
                     <div style={{alignSelf:"center" , margin:"0 20px"}}>VS</div>
@@ -76,9 +113,18 @@ const Card =({rank,rankFlex,name,image,tier,tierFlex,lvl,wins,winsFlex,losses,lo
           })
           
         }).then(res=>res.json())
-          .then(data=>dataHandler(data))
+          .then(data=>{
+              
+              dataHandler(data)
+              
+          })
      }
+    
+    
 
+
+
+    
     return rankFlex&&rank?
         (
             
@@ -112,7 +158,7 @@ const Card =({rank,rankFlex,name,image,tier,tierFlex,lvl,wins,winsFlex,losses,lo
 
                         </div>
                         <div className="mh-container">
-                            <div style={{display:"flex"}}>
+                            <div style={{display:"flex",flexWrap:"wrap",maxWidth:"1200px"}}>
                                 {playerImage(playersChampName,summonerName,0)}
                             </div>
                         </div>
@@ -155,7 +201,7 @@ const Card =({rank,rankFlex,name,image,tier,tierFlex,lvl,wins,winsFlex,losses,lo
 
                             </div>
                             <div className="mh-container">
-                                <div style={{display:"flex"}}>
+                                <div style={{display:"flex",flexWrap:"wrap",maxWidth:"1200px"}}>
                                     {playerImage(playersChampName,summonerName,0)}
                                 </div>
                             </div>
@@ -197,7 +243,7 @@ const Card =({rank,rankFlex,name,image,tier,tierFlex,lvl,wins,winsFlex,losses,lo
 
                             </div>
                             <div className="mh-container">
-                                <div style={{display:"flex"}}>
+                                <div style={{display:"flex",flexWrap:"wrap",maxWidth:"1200px"}}>
                                     {playerImage(playersChampName,summonerName,0)}
                                 </div>
                             </div>
@@ -208,6 +254,7 @@ const Card =({rank,rankFlex,name,image,tier,tierFlex,lvl,wins,winsFlex,losses,lo
                 </div>
             )
         )
+        
 
 }
 
