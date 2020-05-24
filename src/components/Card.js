@@ -3,7 +3,8 @@ import "./Card.css"
 import {Link} from "react-router-dom"
 
 const Card =({rank,rankFlex,name,image,tier,tierFlex,lvl,wins,winsFlex,losses,lossesFlex,points,pointsFlex,matches,champions,region,dataHandler})=>{
-    
+   
+
     const champIds= matches.map(game=>{
         return game.participants.map(ids=>{
             return ids.championId
@@ -53,12 +54,7 @@ const Card =({rank,rankFlex,name,image,tier,tierFlex,lvl,wins,winsFlex,losses,lo
         }
         return champImage
     })
-    // const scrollTop= () => {
-    //     window.scrollTo({
-    //         top: 50,
-    //         behavior: 'smooth'
-    //       });
-    // }
+    
 
     const playerImage = (arr,names,arrNum) =>{
         const partStats= gameStats[arrNum][0]
@@ -77,13 +73,13 @@ const Card =({rank,rankFlex,name,image,tier,tierFlex,lvl,wins,winsFlex,losses,lo
                         <p title="Kills Participation">KP : {killPerc}%</p>
                     </div>
                     <div style={{display:"flex", flexWrap:"wrap",maxWidth:"160px",alignSelf:"center",justifyContent:"center"}}>
-                        <img className="player-img"  src={`../assets/item/${partStats.stats.item0}.png`}></img>
-                        <img className="player-img"  src={`../assets/item/${partStats.stats.item1}.png`}></img>
-                        <img className="player-img"  src={`../assets/item/${partStats.stats.item2}.png`}></img>
-                        <img className="player-img"  src={`../assets/item/${partStats.stats.item3}.png`}></img>
-                        <img className="player-img"  src={`../assets/item/${partStats.stats.item4}.png`}></img>
-                        <img className="player-img"  src={`../assets/item/${partStats.stats.item5}.png`}></img>
-                        <img className="player-img"  src={`../assets/item/${partStats.stats.item6}.png`}></img>
+                        <img  className="player-img"  src={`../assets/item/${partStats.stats.item0}.png`} alt=""></img>
+                        <img  className="player-img"  src={`../assets/item/${partStats.stats.item1}.png`} alt=""></img>
+                        <img  className="player-img"  src={`../assets/item/${partStats.stats.item2}.png`} alt=""></img>
+                        <img  className="player-img"  src={`../assets/item/${partStats.stats.item3}.png`} alt=""></img>
+                        <img  className="player-img"  src={`../assets/item/${partStats.stats.item4}.png`} alt=""></img>
+                        <img  className="player-img"  src={`../assets/item/${partStats.stats.item5}.png`} alt=""></img>
+                        <img  className="player-img"  src={`../assets/item/${partStats.stats.item6}.png`} alt=""></img>
                     </div>
                     <div style={{display:"flex", flexDirection:"column"}}>
                         {arr[arrNum].slice(0,5).map((img,i)=>{

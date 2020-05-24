@@ -1,9 +1,16 @@
 .header{
     max-width: 1200px;
+    margin:0 auto;
     display:flex;
     justify-content: space-around;
-    height:50px;
-    background:#75B1A9;
+    height:60px;
+    background:#29292c;
     align-items:center;
-    margin:0 auto;
+    
+    
+}
+.wrapper{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 }

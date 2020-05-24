@@ -31,7 +31,7 @@ class App extends Component {
   
   render() {
     return (
-      <div>
+      <div >
         <header className={styles.header}>
           
             <Nav/>
@@ -39,7 +39,7 @@ class App extends Component {
           
           
         </header>
-        <div>
+        <div className="wrapper">
 
           <Switch>
               <Route path="/stats">
@@ -49,7 +49,7 @@ class App extends Component {
               <Route path="/div">
                 <div style={{backgroundColor:"orange"}}>Div</div>
               </Route>
-              </Switch>
+          </Switch>
               {/* <Route path="/hello"/>
               Hello
             <Route /> */}

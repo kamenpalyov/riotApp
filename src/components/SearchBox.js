@@ -35,7 +35,7 @@ class SearchBox extends Component {
     input.addEventListener("keyup",event=>{
       if (event.keyCode === 13) {
         event.preventDefault();
-        document.querySelector(".button").click();
+        document.querySelector(".search-btn").click();
        }
     })
   }
@@ -44,25 +44,30 @@ class SearchBox extends Component {
     
     
     return (
-      <Form.Group>
-        <Form.Label></Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="summoner name"
+      <div style={{display:"flex"}}>
+        <div className="search-box">
+          <input 
+          className="search-txt"
           name="sumId"
+          placeholder="search"  
+          type="search"
           onChange={this.searchField}
-          className="search"
           id="input-search"
-        />
-        <Form.Label ></Form.Label>
-        <Link className="button" to="/stats" onClick={this.submitForm}><i className="fas fa-search"></i></Link>
+          autoComplete="off"
+          />
+          
+          <Link className="search-btn" to="/stats" onClick={this.submitForm}><i className="fas fa-search"></i></Link>
+        </div>
+        
+        
         <Form.Control onChange={this.regionField} as="select" className="drop-menu" name="region" id="">
           <option>EUW1</option>
           <option>BR1</option>
           <option>KR</option>
         </Form.Control>
         
-      </Form.Group>
+      </div>  
+     
     );
     
   }

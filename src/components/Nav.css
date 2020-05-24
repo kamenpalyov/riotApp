@@ -6,12 +6,12 @@
 }
 .link:hover{
     
-    color:rgb(206, 253, 226);
+    color:#e84418;
     transition:0.5s ease-out;
 }
 
 
 .active{
     
-    color:rgb(75, 114, 109);
+    color:#e84418;
 }
