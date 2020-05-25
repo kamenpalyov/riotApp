@@ -31,7 +31,7 @@ class App extends Component {
   
   render() {
     return (
-      <div >
+      <div className={styles.appContainer}>
         <header className={styles.header}>
           
             <Nav/>

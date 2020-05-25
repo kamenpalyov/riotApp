@@ -1,0 +1,159 @@
+.card-rank{
+  display:flex;
+  justify-content:space-around;
+  align-items: center;
+  width:100%;
+  padding-bottom: 34px;
+  text-align:center;
+}
+.card-rank p {
+  color:black;
+  font-weight: 500;
+
+}
+.emblem{
+  width:100px;
+}
+
+
+/* TABS CSS */
+*{
+    padding:0;
+    margin:0;
+  }
+  
+  .buttonContainer{
+    transform:translateY(-33.3px);
+    height:15%;
+    
+  }
+  .tabBtn{
+    color:white;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    margin-left:1px;
+    border:1px solid #486c68;
+    box-sizing:border-box;
+    width:100px;
+    height:100%;
+    float:left;
+    outline:none;
+    cursor:pointer;
+    padding:10px;
+    transform:translate(20px,1px);
+    padding-bottom:10px;
+    font-family:sans-serif;
+    font-size: 10px;
+    background-color: #29292c;
+    z-index:2;
+    box-sizing:border-box
+    
+  }
+  .tabBtn:hover{
+    background: #e84418;
+  }
+  .tabPanel{
+    
+    min-height:200px;
+    border:1px solid #486c68;
+    height:100%;
+    background: #2f3640;
+    color:white;
+    text-align:start;
+    box-sizing:border-box;
+    font-size:22px;
+    
+  }
+  .is-active{
+    background:#2f3640;
+    border-bottom:1px solid #2f3640;
+  }
+
+  /* MH container */
+
+  .player-img{
+    width:30px;
+    padding-right:2px;
+    height:30px;
+    
+}
+.player-name{
+    position: relative;
+    bottom:20px;
+    color:black;
+    display:inline-block;
+    width: 8ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    
+}
+a{
+    text-decoration: none;
+    
+}
+.mh-container{
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.mh-wrapper{
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  margin:0 auto;
+}
+
+.mh-teams{
+  display:flex;
+  flex-direction:column;
+ 
+}
+
+.mh-teams img{
+  padding: 5px 0;
+  transform: translateY(-15px);
+}
+.mh-items{
+  align-self:center;
+  text-align:center;
+  flex-wrap:wrap;
+  max-width:160px;
+  justify-content:center;
+  padding-left:15px;
+  box-sizing:border-box;
+  padding-top:10px;
+}
+.mh-items img{
+  width:30px;
+  height:30px
+}
+.mh-player{
+  align-self:center;
+  padding-left:15px
+}
+.mh-player img{
+  width:70px;
+  height:70px;
+  
+}
+
+.mh-player-items-wrapper{
+  display:flex;
+}
+
+@media (max-width:700px){
+  .mh-player{
+    display:flex;
+    flex-direction: column;
+  }
+  .mh-player-items-wrapper{
+    flex-direction:column;
+    justify-content: center;
+    padding-bottom: 30px;
+  }
+  .tabBtn{
+    transform:translateX(0px);
+  }
+}

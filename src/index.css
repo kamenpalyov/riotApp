@@ -18,3 +18,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+::-webkit-scrollbar{
+  background:black;
+  width:2px;
+}
+::-webkit-scrollbar-thumb{
+  background:#e84418;
+  
+  animation-name:scroll;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+
+}
+
+
