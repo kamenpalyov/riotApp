@@ -154,6 +154,6 @@ a{
     padding-bottom: 30px;
   }
   .tabBtn{
-    transform:translateX(0px);
+    transform:translate(3px,2px);
   }
 }
